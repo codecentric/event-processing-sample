@@ -1,0 +1,10 @@
+example/
+*.iml
+*.iws
+*.ipr
+.project
+.externalToolBuilders
+.settings
+.classpath
+.DS_Store
+target
