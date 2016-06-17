@@ -2,8 +2,7 @@ Work in progress...
 
 just a few docker notes:
 =======================
-on a Mac with docker-machine install create a kafka server running in docker:
-
+on a Mac with a docker-machine installation create a kafka server which runs in docker:
 
 docker pull spotify/kafka
 
