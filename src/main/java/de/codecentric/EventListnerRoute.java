@@ -19,9 +19,8 @@ public class EventListnerRoute extends RouteBuilder {
 		JsonDataFormat jsonDataFormat = new JsonDataFormat();
 		jsonDataFormat.setUnmarshalType(CartCreatedEvent.class);
 
-		from("kafka:localhost:9092?zookeeperConnect=localhost:2181&topic=carts&groupId=testing")
-		.log("Got: ${body}")
-		.unmarshal(jsonDataFormat)
+		from("kafka:localhost:9092?zookeeperConnect=localhost:2181&topic=eventChannel&groupId=testing").log("${body}")
+		.unmarshal().json()
 		.to("esper://esper-dom");
 	}
 

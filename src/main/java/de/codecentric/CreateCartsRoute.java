@@ -20,20 +20,33 @@ public class CreateCartsRoute extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-		JsonDataFormat jsonDataFormat = new JsonDataFormat();
-	
+
 		from("timer://foo?fixedRate=true&period=1000").process(new Processor() {
 
 			@Override
 			public void process(Exchange exchange) throws Exception {
-				exchange.getIn().setBody(new CartCreatedEvent((int) (Math.random() * 1000) + 1));
-
+				exchange.getIn().setBody(new CartCreatedEvent((int) (Math.random() * 1000) + 1,"Germany"));
 			}
-		}).marshal(jsonDataFormat).convertBodyTo(String.class).setHeader(KafkaConstants.PARTITION_KEY)
+		}).marshal().json().convertBodyTo(String.class)
+				.setHeader(KafkaConstants.PARTITION_KEY)
 				.simple(".")
-				// .setHeader(KafkaConstants.KEY).simple( "1")
-				.to("kafka:localhost:9092?topic=carts&serializerClass=kafka.serializer.StringEncoder");
+				.setHeader(KafkaConstants.KEY).simple( "1")
+				.to("kafka:localhost:9092?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder");
 
+		from("timer://foo?fixedRate=true&period=3000").process(new Processor() {
+
+			@Override
+			public void process(Exchange exchange) throws Exception {
+				exchange.getIn().setBody(new CartCreatedEvent((int) (Math.random() * 1000) + 1,"USA"));
+			}
+		}).marshal().json().convertBodyTo(String.class)
+				.setHeader(KafkaConstants.PARTITION_KEY)
+				.simple(".")
+				.setHeader(KafkaConstants.KEY).simple( "1")
+				.to("kafka:localhost:9092?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder");
+
+		
+		
 	}
 
 }

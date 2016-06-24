@@ -2,21 +2,16 @@ package de.codecentric;
 
 import java.io.Serializable;
 
-/**
- * A cart. E.g. a shopping cart. Example event type.
- * 
- * @author berthold.schulte@codecentric.de
- *
- */
-public class CartCreatedEvent implements Serializable {
+public class ForeignInvoiceCreatedEvent implements Serializable{
 
-	private static final long serialVersionUID = -6915960334227425088L;
+	private static final long serialVersionUID = -1804130519890607683L;
+
 	private int totalAmount;
 	private String billingCountry;
 	private String type = this.getClass().getCanonicalName();
 
-	public CartCreatedEvent(int amount, String billingCountry) {
-		this.totalAmount = amount;
+	public ForeignInvoiceCreatedEvent(int totalAmount, String billingCountry) {
+		this.totalAmount = totalAmount;
 		this.billingCountry = billingCountry;
 	}
 
