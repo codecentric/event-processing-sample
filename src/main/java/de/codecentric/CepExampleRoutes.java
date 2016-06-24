@@ -15,8 +15,6 @@ import com.espertech.esper.event.map.MapEventBean;
  * 
  * Example routes to consume Events.
  * 
- * @author berthold.schulte@codecentric.de
- *
  */
 @Component
 public class CepExampleRoutes extends RouteBuilder {

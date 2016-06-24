@@ -3,17 +3,17 @@ package de.codecentric;
 import java.io.Serializable;
 
 /**
- * A cart. E.g. a shopping cart. Example event type.
  * 
- * @author berthold.schulte@codecentric.de
- *
+ * Example event
+ * 
+ * A cart. E.g. a shopping cart.
+ * 
  */
 public class CartCreatedEvent implements Serializable {
 
 	private static final long serialVersionUID = -6915960334227425088L;
 	private int totalAmount;
 	private String billingCountry;
-	private String type = this.getClass().getCanonicalName();
 
 	public CartCreatedEvent(int amount, String billingCountry) {
 		this.totalAmount = amount;

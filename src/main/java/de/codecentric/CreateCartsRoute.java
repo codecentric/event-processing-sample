@@ -9,11 +9,10 @@ import org.springframework.stereotype.Component;
 
 
 /**
+ * 
  * Creates faked carts with a random total-amount below 1000 for demo purposes.
  * The carts are pushed to a kafka server and the topic 'carts'
  * 
- * @author berthold.schulte@codecentric.de
- *
  */
 @Component
 public class CreateCartsRoute extends RouteBuilder {

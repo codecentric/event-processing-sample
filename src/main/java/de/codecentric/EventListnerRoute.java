@@ -5,11 +5,10 @@ import org.apache.camel.model.dataformat.JsonDataFormat;
 import org.springframework.stereotype.Component;
 
 /**
+ * 
  * Consumes events from a kafka server and the topic 'carts'.
  * Events are unmarshaled and send to the esper endpoint.
  * 
- * @author berthold.schulte@codecentric.de
- *
  */
 @Component
 public class EventListnerRoute extends RouteBuilder {

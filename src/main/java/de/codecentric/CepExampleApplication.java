@@ -6,11 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 /**
+ * 
  * Springboot application to start. Runs camel infinitely. Can be stopped via shortcut
  * Ctrl+C
  * 
- * @author berthold.schulte@codecentric.de
- *
  */
 @SpringBootApplication
 public class CepExampleApplication {
