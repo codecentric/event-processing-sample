@@ -2,6 +2,11 @@ package de.codecentric;
 
 import java.io.Serializable;
 
+import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.codehaus.jackson.annotate.JsonTypeInfo.As;
+import org.codehaus.jackson.annotate.JsonTypeInfo.Id;
+import org.codehaus.jackson.map.annotate.JsonRootName;
+
 /**
  * 
  * Example event

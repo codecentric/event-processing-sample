@@ -3,8 +3,11 @@ package de.codecentric;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.component.kafka.KafkaConstants;
-import org.apache.camel.model.dataformat.JsonDataFormat;
+import org.apache.camel.model.dataformat.JsonLibrary;
+import org.codehaus.jackson.map.SerializationConfig.Feature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -17,16 +20,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreateCartsRoute extends RouteBuilder {
 
+	@Autowired
+	private EventFactory eventFactory;
+
 	@Override
 	public void configure() throws Exception {
-
 		from("timer://foo?fixedRate=true&period=1000").process(new Processor() {
 
 			@Override
 			public void process(Exchange exchange) throws Exception {
 				exchange.getIn().setBody(new CartCreatedEvent((int) (Math.random() * 1000) + 1,"Germany"));
 			}
-		}).marshal().json().convertBodyTo(String.class)
+		})
+		.bean(eventFactory)
+		.marshal().json().convertBodyTo(String.class)
 				.setHeader(KafkaConstants.PARTITION_KEY)
 				.simple(".")
 				.setHeader(KafkaConstants.KEY).simple( "1")
@@ -38,7 +45,9 @@ public class CreateCartsRoute extends RouteBuilder {
 			public void process(Exchange exchange) throws Exception {
 				exchange.getIn().setBody(new CartCreatedEvent((int) (Math.random() * 1000) + 1,"USA"));
 			}
-		}).marshal().json().convertBodyTo(String.class)
+		})
+		.bean(eventFactory)
+		.marshal().json().convertBodyTo(String.class)
 				.setHeader(KafkaConstants.PARTITION_KEY)
 				.simple(".")
 				.setHeader(KafkaConstants.KEY).simple( "1")

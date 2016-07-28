@@ -9,7 +9,8 @@ import java.io.Serializable;
  * An invoice for a company in foreign country
  * 
  */
-public class ForeignInvoiceCreatedEvent implements Serializable{
+
+public class ForeignInvoiceCreatedEvent implements Serializable {
 
 	private static final long serialVersionUID = -1804130519890607683L;
 
