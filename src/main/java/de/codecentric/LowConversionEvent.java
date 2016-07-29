@@ -10,13 +10,13 @@ import java.io.Serializable;
  * 
  */
 
-public class LowConversion implements Serializable{
+public class LowConversionEvent implements Serializable{
 
 	private static final long serialVersionUID = -6359339927415113604L;
 	
 	private Double averageAmount;
 
-	public LowConversion(Double amount){
+	public LowConversionEvent(Double amount){
 		this.averageAmount = amount;
 		
 	}

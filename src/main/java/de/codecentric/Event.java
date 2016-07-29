@@ -2,7 +2,10 @@ package de.codecentric;
 
 import java.io.Serializable;
 
-public class Event implements Serializable{
+/**
+ * Event structure containing the payload of an event and the event meta-data
+ */
+public class Event implements Serializable {
 
 	private static final long serialVersionUID = 8548381377946319542L;
 
@@ -27,6 +30,5 @@ public class Event implements Serializable{
 	public Object getPayload() {
 		return payload;
 	}
-
 
 }

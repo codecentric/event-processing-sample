@@ -12,12 +12,10 @@ import org.springframework.stereotype.Component;
  * 
  */
 @Component
-public class EventListnerRoute extends RouteBuilder {
+public class EventChannelSubscribeRoute extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-		JacksonDataFormat df = new JacksonDataFormat();
-		df.getObjectMapper().configure(Feature.WRAP_ROOT_VALUE, true);
 		from("kafka:localhost:9092?zookeeperConnect=localhost:2181&topic=eventChannel&groupId=testEQL&autoOffsetReset=largest").log("${body}")
 		.unmarshal().json().setBody().simple("${body.payload}")
 		.to("esper://esper-dom");
