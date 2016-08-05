@@ -2,11 +2,6 @@ package de.codecentric;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonTypeInfo;
-import org.codehaus.jackson.annotate.JsonTypeInfo.As;
-import org.codehaus.jackson.annotate.JsonTypeInfo.Id;
-import org.codehaus.jackson.map.annotate.JsonRootName;
-
 /**
  * 
  * Example event
@@ -20,6 +15,12 @@ public class CartCreatedEvent implements Serializable {
 	private int totalAmount;
 	private String billingCountry;
 
+	/**
+	 * Immutable event with amount and billingCountry
+	 * 
+	 * @param amount total amount of the Cart
+	 * @param billingCountry country of the billing
+	 */
 	public CartCreatedEvent(int amount, String billingCountry) {
 		this.totalAmount = amount;
 		this.billingCountry = billingCountry;

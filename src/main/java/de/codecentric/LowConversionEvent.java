@@ -16,6 +16,10 @@ public class LowConversionEvent implements Serializable{
 	
 	private Double averageAmount;
 
+	/**
+	 * Immutable event 
+	 * @param amount average amount of low conversions
+	 */
 	public LowConversionEvent(Double amount){
 		this.averageAmount = amount;
 		

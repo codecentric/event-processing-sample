@@ -1,12 +1,11 @@
 package de.codecentric;
 
+import java.util.Random;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.apache.camel.component.kafka.KafkaConstants;
-import org.apache.camel.model.dataformat.JsonLibrary;
-import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,21 +28,22 @@ public class CreateCartsRoute extends RouteBuilder {
 
 			@Override
 			public void process(Exchange exchange) throws Exception {
-				exchange.getIn().setBody(new CartCreatedEvent((int) (Math.random() * 1000) + 1,"Germany"));
+				exchange.getIn().setBody(new CartCreatedEvent(new Random().nextInt(1000),"Germany"));
 			}
 		})
 		.bean(eventFactory)
 		.marshal().json().convertBodyTo(String.class)
+		
 				.setHeader(KafkaConstants.PARTITION_KEY)
 				.simple(".")
 				.setHeader(KafkaConstants.KEY).simple( "1")
-				.to("kafka:localhost:9092?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder");
+				.to("kafka:{{kafka.host}}:{{kafka.port}}?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder&producerType=async");
 
 		from("timer://foo?fixedRate=true&period=3000").process(new Processor() {
 
 			@Override
 			public void process(Exchange exchange) throws Exception {
-				exchange.getIn().setBody(new CartCreatedEvent((int) (Math.random() * 1000) + 1,"USA"));
+				exchange.getIn().setBody(new CartCreatedEvent(new Random().nextInt(1000),"USA"));
 			}
 		})
 		.bean(eventFactory)
@@ -51,9 +51,7 @@ public class CreateCartsRoute extends RouteBuilder {
 				.setHeader(KafkaConstants.PARTITION_KEY)
 				.simple(".")
 				.setHeader(KafkaConstants.KEY).simple( "1")
-				.to("kafka:localhost:9092?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder");
-
-		
+				.to("kafka:{{kafka.host}}:{{kafka.port}}?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder&producerType=async");
 		
 	}
 

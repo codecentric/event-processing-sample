@@ -1,8 +1,6 @@
 package de.codecentric;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.jackson.JacksonDataFormat;
-import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,9 +14,9 @@ public class EventChannelSubscribeRoute extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-		from("kafka:localhost:9092?zookeeperConnect=localhost:2181&topic=eventChannel&groupId=testEQL&autoOffsetReset=largest").log("${body}")
+		from("kafka:{{kafka.host}}:{{kafka.port}}?zookeeperConnect={{zookeeper.host}}:{{zookeeper.port}}&topic=eventChannel&groupId=testEQL&autoOffsetReset=largest").log("${body}")
 		.unmarshal().json().setBody().simple("${body.payload}")
-		.to("esper://esper-dom");
+		.to("esper://esper");
 		
 	}
 

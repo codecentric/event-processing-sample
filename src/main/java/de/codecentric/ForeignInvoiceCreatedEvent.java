@@ -17,6 +17,13 @@ public class ForeignInvoiceCreatedEvent implements Serializable {
 	private int totalAmount;
 	private String billingCountry;
 
+	/**
+	 * Immutable event with amount and billing for an invoice with an foreign
+	 * billing country
+	 * 
+	 * @param totalAmount
+	 * @param billingCountry
+	 */
 	public ForeignInvoiceCreatedEvent(int totalAmount, String billingCountry) {
 		this.totalAmount = totalAmount;
 		this.billingCountry = billingCountry;

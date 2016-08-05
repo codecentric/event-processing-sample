@@ -1,18 +1,21 @@
 package de.codecentric;
 
-import java.io.Serializable;
-
 /**
- * Event structure containing the payload of an event and the event meta-data
+ * Event structure containing the payload of an event and the event's meta-data
  */
-public class Event implements Serializable {
-
-	private static final long serialVersionUID = 8548381377946319542L;
+public class Event {
 
 	private String timestamp;
 	private String type;
 	private Object payload;
 
+	/**
+	 * Immutable event with meta-data and payload
+	 * 
+	 * @param type
+	 * @param timestamp
+	 * @param payload
+	 */
 	public Event(String type, String timestamp, Object payload) {
 		this.type = type;
 		this.timestamp = timestamp;
