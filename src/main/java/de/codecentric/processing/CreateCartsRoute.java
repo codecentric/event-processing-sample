@@ -1,4 +1,4 @@
-package de.codecentric;
+package de.codecentric.processing;
 
 import java.util.Random;
 
@@ -8,6 +8,9 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.kafka.KafkaConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import de.codecentric.events.CartCreatedEvent;
+import de.codecentric.events.EventFactory;
 
 
 /**

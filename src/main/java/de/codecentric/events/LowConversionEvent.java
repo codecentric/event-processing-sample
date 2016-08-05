@@ -1,4 +1,4 @@
-package de.codecentric;
+package de.codecentric.events;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package de.codecentric;
+package de.codecentric.events;
 
 /**
  * Event structure containing the payload of an event and the event's meta-data

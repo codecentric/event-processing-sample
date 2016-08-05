@@ -1,8 +1,10 @@
-package de.codecentric;
+package de.codecentric.channel;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.kafka.KafkaConstants;
 import org.springframework.stereotype.Component;
+
+import de.codecentric.events.EventFactory;
 
 /**
  * Publish Events created from Esper events to a kafka server and the topic 'eventChannel'.

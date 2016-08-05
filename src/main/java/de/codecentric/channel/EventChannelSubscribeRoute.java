@@ -1,4 +1,4 @@
-package de.codecentric;
+package de.codecentric.channel;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
