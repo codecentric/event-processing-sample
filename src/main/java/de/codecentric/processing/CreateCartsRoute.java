@@ -16,7 +16,7 @@ import de.codecentric.events.EventFactory;
 /**
  * 
  * Creates faked carts with a random total-amount below 1000 for demo purposes.
- * The carts are pushed to a kafka server and the topic 'carts'
+ * The carts are pushed to a kafka server and the topic 'eventChannel'
  * 
  */
 @Component
@@ -27,6 +27,9 @@ public class CreateCartsRoute extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
+		/*
+		 * route to create carts with random total amount and billing country Germany
+		 */
 		from("timer://foo?fixedRate=true&period=1000").process(new Processor() {
 
 			@Override
@@ -42,6 +45,9 @@ public class CreateCartsRoute extends RouteBuilder {
 				.setHeader(KafkaConstants.KEY).simple( "1")
 				.to("kafka:{{kafka.host}}:{{kafka.port}}?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder&producerType=async");
 
+		/*
+		 * route to create carts with random total amount and billing country USA
+		 */
 		from("timer://foo?fixedRate=true&period=3000").process(new Processor() {
 
 			@Override

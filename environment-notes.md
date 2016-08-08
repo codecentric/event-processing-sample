@@ -39,10 +39,11 @@ Replace the kafka and zookeeper urls in the [application.properties](src/main/re
 	
 	docker pull logstash
 	
-Replace the zk_connect and elasticsearch parameter value hosts:port with the corresponding values assigned in your kafka and elasticsearch docker containers.
+Replace the zk_connect and elasticsearch parameter value host:port with the corresponding values assigned in your kafka and elasticsearch docker containers.
 	
 	docker run -d --name elastic -p 0.0.0.0:9200:9200 -p 0.0.0.0:9300:9300 elasticsearch 
 	
 	docker run -d --name logstash -it -v "$PWD":/config-dir logstash logstash -f /config-dir/logstash.conf
 	
 	docker run --link elastic:elasticsearch -d -p 0.0.0.0:5601:5601 kibana
+

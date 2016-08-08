@@ -8,3 +8,4 @@ example/
 .classpath
 .DS_Store
 target
+logback.out.xml

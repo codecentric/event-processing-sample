@@ -18,10 +18,8 @@ public class EventChannelPublishRoute extends RouteBuilder {
 		from("seda:eventChannel")
 			.bean(EventFactory.class, "createFromEsperEvent")
 			.setHeader(KafkaConstants.KEY).simple("${body.id}")
-
 			.marshal().json()
 			.convertBodyTo(String.class)
-			//.setHeader(KafkaConstants.PARTITION_KEY).simple(".")
 			.to("kafka:{{kafka.host}}:{{kafka.port}}?topic=eventChannel&serializerClass=kafka.serializer.StringEncoder&producerType=async");
 	}
 
