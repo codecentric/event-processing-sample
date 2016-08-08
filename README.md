@@ -1,11 +1,10 @@
-#Event-driven Microservices with lightweight Complex Event Processing
+#Event-driven Microservices with lightweight Event Processing
 
-**Note**: This project is related to the examples used in the blog article:
-[CodeCentric Blog: Event-driven Mircoservices](https://blog.codecentric.de/?p=37652&preview=true) and the code is just for demonstration purposes – it is not production ready. 
+**Note**:The code of this project is just for demonstration purposes – it is not production ready.
 
 ## Summary
 
-The project outlines the usage of complex event processing (CEP) within an event-driven architecture (EDA) in a lightweight way. 
+The project outlines the usage of event processing within an event-driven architecture (EDA) in a lightweight way. The project does not distinguish between the terms complex event processing (CEP) and event stream processing (ESP). ESP is rather treated as a subset of CEP.
 An event channel of the EDA is realized by the message-broker [Apache Kafka](http://kafka.apache.org). The CEP part is realized with the the event processing engine and event processing language from [EsperTech](http://espertech.com). [Apache Camel](http://camel.apache.org) is used to connect the event channel to the event processing engine.
 The example can be started as a [spring boot application](http://projects.spring.io/spring-boot/).
 
