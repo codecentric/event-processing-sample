@@ -1,5 +1,7 @@
 package de.codecentric.events;
 
+import java.util.UUID;
+
 /**
  * Event structure containing the payload of an event and the event's meta-data
  */
@@ -8,6 +10,7 @@ public class Event {
 	private String timestamp;
 	private String type;
 	private Object payload;
+	private String id;
 
 	/**
 	 * Immutable event with meta-data and payload
@@ -20,6 +23,7 @@ public class Event {
 		this.type = type;
 		this.timestamp = timestamp;
 		this.payload = payload;
+		this.id = UUID.randomUUID().toString();
 	}
 
 	public String getTimestamp() {
@@ -34,4 +38,7 @@ public class Event {
 		return payload;
 	}
 
+	public String getId() {
+		return id;
+	}
 }
