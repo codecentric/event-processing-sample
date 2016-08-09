@@ -37,6 +37,7 @@ public class CreateCartsRoute extends RouteBuilder {
 				exchange.getIn().setBody(new CartCreatedEvent(new Random().nextInt(1000),"Germany"));
 			}
 		})
+		.setHeader("event-source").simple("fakedCartCreator")
 		.bean(eventFactory)
 		.marshal().json().convertBodyTo(String.class)
 		
@@ -55,6 +56,7 @@ public class CreateCartsRoute extends RouteBuilder {
 				exchange.getIn().setBody(new CartCreatedEvent(new Random().nextInt(1000),"USA"));
 			}
 		})
+		.setHeader("event-source").simple("fakedCartCreator")
 		.bean(eventFactory)
 		.marshal().json().convertBodyTo(String.class)
 				.setHeader(KafkaConstants.PARTITION_KEY)

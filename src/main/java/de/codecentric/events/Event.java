@@ -11,15 +11,18 @@ public class Event {
 	private String type;
 	private Object payload;
 	private String id;
+	private String source;
 
 	/**
 	 * Immutable event with meta-data and payload
 	 * 
+	 * @param source
 	 * @param type
-	 * @param timestamp
+	 * @param format
 	 * @param payload
 	 */
-	public Event(String type, String timestamp, Object payload) {
+	public Event(String source, String type, String timestamp, Object payload) {
+		this.source = source;
 		this.type = type;
 		this.timestamp = timestamp;
 		this.payload = payload;
@@ -40,5 +43,9 @@ public class Event {
 
 	public String getId() {
 		return id;
+	}
+
+	public String getSource() {
+		return source;
 	}
 }

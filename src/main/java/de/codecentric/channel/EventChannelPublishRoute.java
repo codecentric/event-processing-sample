@@ -16,6 +16,7 @@ public class EventChannelPublishRoute extends RouteBuilder {
 	@Override
 	public void configure() throws Exception {
 		from("seda:eventChannel")
+			.setHeader("event-source").simple("${properties:eventsource}")
 			.bean(EventFactory.class, "createFromEsperEvent")
 			.setHeader(KafkaConstants.KEY).simple("${body.id}")
 			.marshal().json()

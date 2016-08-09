@@ -3,6 +3,8 @@ package de.codecentric.processing;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
+import de.codecentric.events.EventFactory;
+
 /**
  * 
  * Example routes to consume and produce new events based on certain criteria.
